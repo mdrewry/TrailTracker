@@ -1,7 +1,7 @@
 # TrailTracker
 
 #### Technolgy
-Django, SQLite, HTML, CSS
+* Django, SQLite, HTML, CSS
 
 Look at these tutorials:
 * https://docs.djangoproject.com/en/3.1/intro/tutorial01/
