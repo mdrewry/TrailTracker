@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,43 +14,25 @@
       crossorigin="anonymous"
     />
     <!-- Add additional CSS in static file -->
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2">
-          {% block sidebar %}
-          <ul class="sidebar-nav">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="">All books</a></li>
-            <li><a href="">All authors</a></li>
-          </ul>
-          {% endblock %}
-        </div>
-        <div class="col-sm-10">
-          
-          <h1>Local Library Home</h1>
-          <p>
-            Welcome to LocalLibrary, a website developed by
-            <em>Mozilla Developer Network</em>!
-          </p>
-          <h2>Dynamic content</h2>
-          <p>The library has the following record counts:</p>
-
-          {% for hike in hikes %}
-          <h4>Hike: {{hike.id}}</h4>
-          <p>Total distance: {{hike.miles}} miles
-          <br>Total elevation gain: {{hike.elevationGain}} feet
-          <br>Total elevation loss: {{hike.elevationLoss}} feet
-          <br>Description: {{hike.description}}
-          <br>Starred: {{hike.starred}}</p>
-          {% endfor %}
-
-        </div>
-      </div>
-            
+    <div class="navbar">
+      <h4 class="navbar-header">TrailTracker</h4>
+      <div class="fill"></div>
+      <button>Add Entry</button>
+    </div>
+    <div class="content">
+      {% block content %}{% endblock %}
+      <!-- {% for hike in hikes %}
+      <h4>Hike: {{hike.id}}</h4>
+      <p>
+        Total distance: {{hike.miles}} miles <br />Total elevation gain:
+        {{hike.elevationGain}} feet <br />Total elevation loss:
+        {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
+        <br />Starred: {{hike.starred}}
+      </p>
+      {% endfor %} -->
     </div>
   </body>
 </html>
