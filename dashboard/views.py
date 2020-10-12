@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from polls.models import Hike
+from dashboard.models import Hike
 
 # Create your views here.
 def index(request):
