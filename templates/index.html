@@ -6,4 +6,12 @@
 </p>
 <h2>Dynamic content</h2>
 <p>The library has the following record counts:</p>
+{% for hike in hikes %}
+<h4>Hike: {{hike.id}}</h4>
+<p>Total distance: {{hike.miles}} miles
+<br>Total elevation gain: {{hike.elevationGain}} feet
+<br>Total elevation loss: {{hike.elevationLoss}} feet
+<br>Description: {{hike.description}}
+<br>Starred: {{hike.starred}}</p>
+{% endfor %}
 {% endblock %}
