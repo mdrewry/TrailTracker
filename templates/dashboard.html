@@ -40,7 +40,13 @@
 
           {% for hike in hikes %}
           <h4>Hike: {{hike.id}}</h4>
-          <p>Total distance: {{hike.miles}} miles
+          
+          <p>Name: {{hike.name}}
+          <br> Latitude: {{hike.latitude}}
+          <br> Longitude: {{hike.longitude}}
+          <br> start: {{hike.startDate}}
+          <br> end: {{hike.endDate}}
+          <br>Total distance: {{hike.miles}} miles
           <br>Total elevation gain: {{hike.elevationGain}} feet
           <br>Total elevation loss: {{hike.elevationLoss}} feet
           <br>Description: {{hike.description}}

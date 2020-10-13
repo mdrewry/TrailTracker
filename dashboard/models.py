@@ -12,13 +12,13 @@ class HikeManager(models.Manager):
     
 # Create your models here.
 class Hike(models.Model):
-    # name = models.TextField()
+    name = models.TextField()
 
-    # latitude = models.FloatField()
-    # longitude = models.FloatField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
 
-    # startDate = models.DateField()
-    # endDate = models.DateField()
+    startDate = models.DateField()
+    endDate = models.DateField()
 
     miles = models.FloatField()
     
