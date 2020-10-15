@@ -3,10 +3,10 @@ from dashboard.models import Hike
 
 # Create your views here.
 def dashboard(request):
-    return render(request, 'dashboard.html', {'hikes': Hike.objects.all()})
+    return render(request, 'dashboard.html')
 
 def addEntry(request):
     return render(request, 'addEntry.html');
 
 def feed(request):
-    return render(request, 'feed.html');
+    return render(request, 'feed.html' , {'hikes': Hike.objects.all()});

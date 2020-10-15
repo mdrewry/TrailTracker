@@ -20,19 +20,10 @@
     <div class="navbar">
       <h4 class="navbar-header">TrailTracker</h4>
       <div class="fill"></div>
-      <button>Add Entry</button>
+      <a href="feed"><button class="nav-button">View Hikes</button></a>
+      <div class="spacer"></div>
+      <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
-    <div class="content">
-      {% block content %}{% endblock %}
-      <!-- {% for hike in hikes %}
-      <h4>Hike: {{hike.id}}</h4>
-      <p>
-        Total distance: {{hike.miles}} miles <br />Total elevation gain:
-        {{hike.elevationGain}} feet <br />Total elevation loss:
-        {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
-        <br />Starred: {{hike.starred}}
-      </p>
-      {% endfor %} -->
-    </div>
+    <div class="content">{% block content %}{% endblock %}</div>
   </body>
 </html>

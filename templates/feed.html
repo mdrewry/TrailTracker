@@ -1,3 +1,12 @@
-{% extends "dashboard.html" %} {% block content %}
-<h1 class="navbar-header">Feed</h1>
-{% endblock %}
+{% extends "dashboard.html" %} {% block content %} {% for hike in hikes %}
+
+<div class="hike-item">
+  <h4 class="content-text">Hike: {{hike.id}}</h4>
+  <p class="content-text">
+    Total distance: {{hike.miles}} miles <br />Total elevation gain:
+    {{hike.elevationGain}} feet <br />Total elevation loss:
+    {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
+    <br />Starred: {{hike.starred}}
+  </p>
+</div>
+{% endfor %} {% endblock %}
