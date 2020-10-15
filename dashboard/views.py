@@ -2,5 +2,11 @@ from django.shortcuts import render, HttpResponse
 from dashboard.models import Hike
 
 # Create your views here.
-def index(request):
-    return render(request, 'dashboard.html', {'hikes': Hike.objects.all()})
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def addEntry(request):
+    return render(request, 'addEntry.html');
+
+def feed(request):
+    return render(request, 'feed.html' , {'hikes': Hike.objects.all()});
