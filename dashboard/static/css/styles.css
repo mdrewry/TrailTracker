@@ -10,7 +10,7 @@ body {
   margin: 0;
   max-height: 100vh;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 .fill {
   flex-grow: 1;
