@@ -1,39 +1,12 @@
 {% extends "dashboard.html" %} {% block content %}
+{% load crispy_forms_tags %}
 <h1 class="content-text">Create Hike Entry</h1>
 
-<h1 class="content-text"><form action="addEntry" method="POST">{% csrf_token %}
-    <label for="name">Hike Name:</label><br>
-    <input type="text" id="name" name="name" required><br>
-
-    <label for="latitude">Latitude:</label><br>
-    <input type="number" id="latitude" name="latitude" required><br>
-
-    <label for="longitude">Longitude:</label><br>
-    <input type="number" id="longitude" name="longitude" required><br>
-
-    <label for="startDate">Start Date:</label><br>
-    <input type="date" id="startDate" name="startDate" required><br>
-
-    <label for="endDate">End Date:</label><br>
-    <input type="date" id="endDate" name="endDate" required><br>
-
-    <label for="miles">Miles:</label><br>
-    <input type="number" id="miles" name="miles" required><br>
-
-    <label for="elevationGain">Elevation Gained:</label><br>
-    <input type="number" id="elevationGain" name="elevationGain" required><br>
-
-    <label for="elevationLoss">Elevation Loss:</label><br>
-    <input type="number" id="elevationLoss" name="elevationLoss" required><br>
-
-    <label for="description">Description:</label><br>
-    <input type="text" id="description" name="description" required><br><br>
-
-    <label for="image">Description:</label><br>
-    <input type="file" id="image" name="image" required><br><br>
-    
-    <input type="submit">
-    
-</form>
+<h1 class="content-text">
+    <form action="addEntry" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Submit">
+    </form>
 </h1>
 {% endblock %}
