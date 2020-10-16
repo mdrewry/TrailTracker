@@ -10,3 +10,6 @@ def addEntry(request):
 
 def feed(request):
     return render(request, 'feed.html' , {'hikes': Hike.objects.all()});
+
+def viewEntry(request,id):
+    return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
