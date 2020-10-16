@@ -94,24 +94,19 @@ a:hover {
   box-sizing: border-box;
   overflow-y: auto;
   height: 80vh;
+  padding-right: 5px;
 }
-/* .list::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-} */
 .list::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 .list::-webkit-scrollbar:vertical {
-  width: 13px;
-}
-.list::-webkit-scrollbar:horizontal {
-  height: 13px;
+  width: 10px;
 }
 .list::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  border: 2px solid black;
-  background-color: white;
+  height: 20px;
+  border: 1px solid var(--highlight);
+  background-color: var(--contrast);
 }
 .info {
   flex-grow: 2;
