@@ -18,10 +18,10 @@ def feed(request):
         total_elevation_gain+=hike.elevationGain;
         total_elevation_loss+=hike.elevationLoss;
     num_hikes = len(hikes)
-    average_miles= total_miles/num_hikes;
-    average_elevation_gain= total_elevation_gain/num_hikes;
-    average_elevation_loss= total_elevation_loss/num_hikes;
-    return render(request, 'feed.html' , {'hikes': hikes, 'total_miles': total_miles, 'total_elevation_gain':total_elevation_gain, 'total_elevation_loss':total_elevation_loss, 'average_miles': average_miles, 'average_elevation_gain':average_elevation_gain, 'average_elevation_loss':average_elevation_loss});
+    average_miles= int(total_miles/num_hikes);
+    average_elevation_gain= int(total_elevation_gain/num_hikes)
+    average_elevation_loss= int(total_elevation_loss/num_hikes)
+    return render(request, 'feed.html' , {'hikes': hikes,'num_hikes':num_hikes,'total_miles': int(total_miles), 'total_elevation_gain':int(total_elevation_gain), 'total_elevation_loss':int(total_elevation_loss), 'average_miles': average_miles, 'average_elevation_gain':average_elevation_gain, 'average_elevation_loss':average_elevation_loss});
 
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
