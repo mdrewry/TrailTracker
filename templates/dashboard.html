@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
     {% block title %}
     <title>TrailTracker</title>
     {% endblock %}
@@ -21,12 +20,9 @@
     <div class="navbar">
       <h4 class="navbar-header">TrailTracker</h4>
       <div class="fill"></div>
-      <a href="feed"><button class="nav-button">View Hikes</button></a>
       <div class="spacer"></div>
       <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
-
     <div class="content">{% block content %}{% endblock %}</div>
-    
   </body>
 </html>

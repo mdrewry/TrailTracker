@@ -1,45 +1,53 @@
-{% extends "dashboard.html" %} {% block content %} {% for hike in hikes %}
-<head>
-  <style>
-    /* Set the size of the div element that contains the map */
-   #map {
-     height: 500px;
-     width: 40%; 
-     margin-left: auto;
-     margin-right: auto;
-    }
- </style>
- </head>
- <body>
-<a href="feed/{{hike.id}}/">
-  <h3 style="text-align: center; color:pink">Location of Hike</h3>
+{% extends "dashboard.html" %} {% block content %}
+<div class="feed-wrapper">
+  <div class="list">
+    <h3 class="map-title">Hike Entries</h3>
+    {% for hike in hikes %}
+    <a href="feed/{{hike.id}}/">
+      <div class="hike-item">
+        <h4 class="content-text">Hike: {{hike.id}}</h4>
+        <p class="content-text">
+          Distance: {{hike.miles}} miles <br />Elevation gain:
+          {{hike.elevationGain}} feet <br />Elevation loss:
+          {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
+          <br />Starred: {{hike.starred}}
+        </p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="info">
+    <h3 class="map-title">Hike Map</h3>
     <div id="map"></div>
     <script>
-    
-    function initMap() {
-      var uluru = {lat: -25.344, lng: 131.036};
-      var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 10, center: uluru});
-      var marker = new google.maps.Marker({position: uluru, map: map});
-    }
+      function initMap() {
+        var uluru = { lat: -25.344, lng: 131.036 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 10,
+          center: uluru,
+        });
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+      }
     </script>
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap">
-    </script>
-    </body>
-<div class="hike-item">
-  <h4 class="content-text">Hike: {{hike.id}}</h4>
-  <p class="content-text">
-    <style type="text/css">
-      <!--
-      a:hover {text-decoration: none}
-      -->
-      </style>
-    Total distance: {{hike.miles}} miles <br />Total elevation gain:
-    {{hike.elevationGain}} feet <br />Total elevation loss:
-    {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
-    <br />Starred: {{hike.starred}}
-  </p>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap"
+    ></script>
+    <h3 class="stats-title">Statistics</h3>
+    <div class="stats">
+      <div class="col-center">
+        <h3 class="content-text">Total Miles Hiked</h3>
+        <h3 class="content-text">{{total_miles}}</h3>
+      </div>
+      <div class="col-center">
+        <h3 class="content-text">Total Feet Climbed</h3>
+        <h3 class="content-text">{{total_elevation_gain}}</h3>
+      </div>
+      <div class="col-center">
+        <h3 class="content-text">Total Feet Dropped</h3>
+        <h3 class="content-text">{{total_elevation_loss}}</h3>
+      </div>
+    </div>
+  </div>
 </div>
-</a>
-{% endfor %} {% endblock %}
+{% endblock %}
