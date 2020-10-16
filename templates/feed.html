@@ -33,19 +33,36 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap"
     ></script>
-    <h3 class="stats-title">Statistics</h3>
+    <h3 class="stats-title">Overall Statistics</h3>
     <div class="stats">
-      <div class="col-center">
-        <h3 class="content-text">Total Miles Hiked</h3>
-        <h3 class="content-text">{{total_miles}}</h3>
+      <div class="stats-row">
+        <div class="col-center">
+          <h3 class="content-text">Total Miles Hiked</h3>
+          <h3 class="content-text">{{total_miles}}</h3>
+        </div>
+        <div class="col-center">
+          <h3 class="content-text">Total Feet Climbed</h3>
+          <h3 class="content-text">{{total_elevation_gain}}</h3>
+        </div>
+        <div class="col-center">
+          <h3 class="content-text">Total Feet Dropped</h3>
+          <h3 class="content-text">{{total_elevation_loss}}</h3>
+        </div>
       </div>
-      <div class="col-center">
-        <h3 class="content-text">Total Feet Climbed</h3>
-        <h3 class="content-text">{{total_elevation_gain}}</h3>
-      </div>
-      <div class="col-center">
-        <h3 class="content-text">Total Feet Dropped</h3>
-        <h3 class="content-text">{{total_elevation_loss}}</h3>
+      <div class="spacer50"></div>
+      <div class="stats-row">
+        <div class="col-center">
+          <h3 class="content-text">Average Miles Hiked</h3>
+          <h3 class="content-text">{{average_miles}}</h3>
+        </div>
+        <div class="col-center">
+          <h3 class="content-text">Average Feet Climbed</h3>
+          <h3 class="content-text">{{average_elevation_gain}}</h3>
+        </div>
+        <div class="col-center">
+          <h3 class="content-text">Average Feet Dropped</h3>
+          <h3 class="content-text">{{average_elevation_loss}}</h3>
+        </div>
       </div>
     </div>
   </div>
