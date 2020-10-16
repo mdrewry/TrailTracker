@@ -1,20 +1,19 @@
 {% extends "dashboard.html" %} {% block content %}
 <div class="feed-wrapper">
-  <div class="list">
+  <div class="info">
     <h3 class="map-title">Hike Entries</h3>
-    {% for hike in hikes %}
-    <a href="feed/{{hike.id}}/">
-      <div class="hike-item">
-        <h4 class="content-text">Hike: {{hike.id}}</h4>
-        <p class="content-text">
-          Distance: {{hike.miles}} miles <br />Elevation gain:
-          {{hike.elevationGain}} feet <br />Elevation loss:
-          {{hike.elevationLoss}} feet <br />Description: {{hike.description}}
-          <br />Starred: {{hike.starred}}
-        </p>
-      </div>
-    </a>
-    {% endfor %}
+    <div class="list">
+      {% for hike in hikes %}
+      <a href="feed/{{hike.id}}/">
+        <div class="hike-item">
+          <h4 class="content-text">{{hike.name}}</h4>
+          <p class="content-text">
+            Description: {{hike.description}} <br />Starred: {{hike.starred}}
+          </p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
   </div>
   <div class="info">
     <h3 class="map-title">Hike Map</h3>
@@ -35,31 +34,32 @@
     ></script>
     <h3 class="stats-title">Overall Statistics</h3>
     <div class="stats">
-      <div class="stats-row">
-        <div class="col-center">
-          <h3 class="content-text">Total Miles Hiked</h3>
-          <h3 class="content-text">{{total_miles}}</h3>
-        </div>
-        <div class="col-center">
-          <h3 class="content-text">Total Feet Climbed</h3>
-          <h3 class="content-text">{{total_elevation_gain}}</h3>
-        </div>
-        <div class="col-center">
-          <h3 class="content-text">Total Feet Dropped</h3>
-          <h3 class="content-text">{{total_elevation_loss}}</h3>
+      <div class="row-center">
+        <div class="stats-col">
+          <h3 class="content-text">Hikes Completed</h3>
+          <h3 class="content-text">{{num_hikes}}</h3>
         </div>
       </div>
       <div class="spacer50"></div>
-      <div class="stats-row">
-        <div class="col-center">
+      <div class="row-center">
+        <div class="stats-col">
+          <h3 class="content-text">Total Miles Hiked</h3>
+          <h3 class="content-text">{{total_miles}}</h3>
+          <div class="spacer50"></div>
           <h3 class="content-text">Average Miles Hiked</h3>
           <h3 class="content-text">{{average_miles}}</h3>
         </div>
-        <div class="col-center">
+        <div class="stats-col">
+          <h3 class="content-text">Total Feet Climbed</h3>
+          <h3 class="content-text">{{total_elevation_gain}}</h3>
+          <div class="spacer50"></div>
           <h3 class="content-text">Average Feet Climbed</h3>
           <h3 class="content-text">{{average_elevation_gain}}</h3>
         </div>
-        <div class="col-center">
+        <div class="stats-col">
+          <h3 class="content-text">Total Feet Dropped</h3>
+          <h3 class="content-text">{{total_elevation_loss}}</h3>
+          <div class="spacer50"></div>
           <h3 class="content-text">Average Feet Dropped</h3>
           <h3 class="content-text">{{average_elevation_loss}}</h3>
         </div>
