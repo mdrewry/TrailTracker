@@ -19,17 +19,17 @@ https://github.com/mdrewry/TrailTracker
 * pytz v2020.1
 * sqlparse v0.4.1
 
-#### 1.Install SQLite
+#### Install SQLite
 * sudo apt update
 * sudo apt-get install sqlite3
 
-#### 2.Install Pip Packages
+#### Install Pip Packages
 * pip install -r requirements.txt
 
-#### (Recommended) Run App With Script
+#### (Option 1) Run App With Script
 * bash start
 
-#### (Optional) Run App Without Script
+#### (Option 2) Run App Without Script
 * python manage.py makemigrations
 * python manage.py sqlmigrate dashboard 0001
 * python manage.py migrate
