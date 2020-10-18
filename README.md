@@ -4,7 +4,9 @@
 * Django, SQLite, HTML, CSS
 
 #### Description
-Record experiences of a hike. Add and view statistics for different hike entries. Add photos of the hikes and view the trails on Google Maps. 
+* Record experiences of a hike.
+* Add and view statistics for different hike entries.
+* Add photos of the hikes and view trail locations on an interactive map. 
 
 #### Link
 https://github.com/mdrewry/TrailTracker
