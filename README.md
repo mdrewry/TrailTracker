@@ -20,6 +20,8 @@ https://github.com/mdrewry/TrailTracker
 * sqlparse v0.4.1
 
 #### Install Packages
+* sudo apt update
+* sudo apt-get install sqlite3
 * pip install -r requirements.txt
 
 #### Run App Using Script
