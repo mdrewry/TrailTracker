@@ -22,9 +22,10 @@ https://github.com/mdrewry/TrailTracker
 #### Install Packages
 * pip install -r requirements.txt
 
-#### Run App
-* bash start.txt
-OR
+#### Run App Using Script
+* bash start
+
+#### Run App Without Script
 * python manage.py makemigrations
 * python manage.py sqlmigrate dashboard 0001
 * python manage.py migrate
