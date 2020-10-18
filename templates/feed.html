@@ -1,7 +1,11 @@
 {% extends "dashboard.html" %} {% block content %}
 <div class="feed-wrapper">
-  <div class="info">
-    <h3 class="map-title">Hike Entries</h3>
+  <div class="info-left">
+    <div class="row-center">
+      <h3 class="map-title">Hike Entries</h3>
+      <div class="fill"></div>
+      <a href="addEntry"><button class="nav-button">Add Entry</button></a>
+    </div>
     <div class="list">
       {% for hike in hikes %}
       <a href="feed/{{hike.id}}/">
@@ -19,7 +23,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="info">
+  <div class="info-right">
     <h3 class="map-title">Hike Map</h3>
     <div id="map"></div>
     <script type="text/javascript">

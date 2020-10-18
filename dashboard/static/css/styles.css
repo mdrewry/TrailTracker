@@ -85,6 +85,7 @@ a:hover {
   width: 100%;
 }
 .list {
+  width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -108,11 +109,22 @@ a:hover {
   border: 1px solid var(--highlight);
   background-color: var(--contrast);
 }
-.info {
-  flex-grow: 2;
+.info-left {
+  width: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid var(--highlight) 1px;
+}
+.info-right {
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
 .stats-title {
   color: var(--highlight);
