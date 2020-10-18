@@ -1,0 +1,81 @@
+{% extends "dashboard.html" %} {% block content %}
+<div class="feed-wrapper">
+  <div class="info">
+    <h3 class="map-title">Hike Entries</h3>
+    <div class="list">
+      {% for hike in hikes %}
+      <a href="feed/{{hike.id}}/">
+        <div class="hike-item">
+          <div class="row-center">
+            <h4 class="content-text">{{hike.name}}</h4>
+            <div class="fill"></div>
+            {% if hike.starred%}
+            <h4 class="content-text">Star</h4>
+            {%endif%}
+          </div>
+          <p class="content-text">{{hike.description}}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="info">
+    <h3 class="map-title">Hike Map</h3>
+    <div id="map"></div>
+    <script type="text/javascript">
+      function initMap() {
+        let coords = JSON.parse("{{coords|escapejs}}");
+        var waterton = { lat: 49.048746, lng: -113.909336 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 6,
+          center: waterton,
+        });
+        coords.forEach(
+          (hike) =>
+            (marker = new google.maps.Marker({
+              position: new google.maps.LatLng(hike.lat, hike.lng),
+              map: map,
+            }))
+        );
+      }
+    </script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap"
+    ></script>
+    <h3 class="stats-title">Overall Statistics</h3>
+    <div class="stats">
+      <div class="row-center">
+        <div class="stats-col">
+          <h3 class="content-text">Hikes Completed</h3>
+          <h3 class="content-text">{{num_hikes}}</h3>
+        </div>
+      </div>
+      <div class="spacer50"></div>
+      <div class="row-center">
+        <div class="stats-col">
+          <h3 class="content-text">Total Miles Hiked</h3>
+          <h3 class="content-text">{{total_miles}}</h3>
+          <div class="spacer50"></div>
+          <h3 class="content-text">Average Miles Hiked</h3>
+          <h3 class="content-text">{{average_miles}}</h3>
+        </div>
+        <div class="stats-col">
+          <h3 class="content-text">Total Feet Climbed</h3>
+          <h3 class="content-text">{{total_elevation_gain}}</h3>
+          <div class="spacer50"></div>
+          <h3 class="content-text">Average Feet Climbed</h3>
+          <h3 class="content-text">{{average_elevation_gain}}</h3>
+        </div>
+        <div class="stats-col">
+          <h3 class="content-text">Total Feet Dropped</h3>
+          <h3 class="content-text">{{total_elevation_loss}}</h3>
+          <div class="spacer50"></div>
+          <h3 class="content-text">Average Feet Dropped</h3>
+          <h3 class="content-text">{{average_elevation_loss}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
