@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from dashboard.models import Hike
+from dashboard.forms import HikeForm
 import json
 # Create your views here.
 def dashboard(request):
