@@ -11,7 +11,7 @@ def addEntry(request):
         form = HikeForm(request.POST, request.FILES)
         if(form.is_valid()):
             Hike.objects.createHike(request.POST.get("name"),request.POST.get("latitude"),request.POST.get("longitude"),request.POST.get("startDate"),request.POST.get("endDate"),request.POST.get("miles"),request.POST.get("elevationGain"),request.POST.get("elevationLoss"),request.POST.get("description"),False,request.FILES['image'])
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect('/')
     else:
         form = HikeForm()
     return render(request, 'addEntry.html', {"form" : form})
