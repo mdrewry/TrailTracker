@@ -1,4 +1,4 @@
-# TrailTracker
+# TrailTracker Description
 
 #### Technology
 * Django, SQLite, HTML, CSS
