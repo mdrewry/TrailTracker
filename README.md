@@ -9,7 +9,7 @@
 * Add photos of the hikes and view trail locations on an interactive map. 
 
 #### Link
-https://github.com/mdrewry/TrailTracker
+* https://github.com/mdrewry/TrailTracker
 
 #### Pip Packages
 * asgiref v3.2.10
