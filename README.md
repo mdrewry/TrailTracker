@@ -19,6 +19,8 @@ https://github.com/mdrewry/TrailTracker
 * pytz v2020.1
 * sqlparse v0.4.1
 
+# Installation Guide
+
 #### Install SQLite
 * sudo apt update
 * sudo apt-get install sqlite3
