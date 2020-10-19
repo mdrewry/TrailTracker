@@ -19,4 +19,8 @@
     </div>
     <h4 class="content-text">{{hike.description}}</h4>
 </div>
+<div class="spacer50"></div>
+{% if hike.image.url != null %}
+<img src={{hike.image.url}} alt="" style="width:480px;height:320px">
+{% endif %}
  {% endblock %}
