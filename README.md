@@ -1,13 +1,15 @@
-# TrailTracker
+# TrailTracker Description
 
 #### Technology
 * Django, SQLite, HTML, CSS
 
 #### Description
-Record experiences of a hike. Add and view statistics for different hike entries. Add photos of the hikes and view the trails on Google Maps. 
+* Record experiences of a hike.
+* Add and view statistics for different hike entries.
+* Add photos of the hikes and view trail locations on an interactive map. 
 
 #### Link
-https://github.com/mdrewry/TrailTracker
+* https://github.com/mdrewry/TrailTracker
 
 #### Pip Packages
 * asgiref v3.2.10
@@ -19,15 +21,19 @@ https://github.com/mdrewry/TrailTracker
 * pytz v2020.1
 * sqlparse v0.4.1
 
-#### Install Packages
+# Installation Guide
+
+#### Install SQLite
 * sudo apt update
 * sudo apt-get install sqlite3
+
+#### Install Pip Packages
 * pip install -r requirements.txt
 
-#### Run App Using Script
+#### (Option 1) Run App With Script
 * bash start
 
-#### Run App Without Script
+#### (Option 2) Run App Without Script
 * python manage.py makemigrations
 * python manage.py sqlmigrate dashboard 0001
 * python manage.py migrate
