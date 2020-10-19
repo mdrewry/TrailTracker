@@ -1,4 +1,10 @@
-# TrailTracker Description
+# TrailTracker
+
+#### Contributors
+* Mark Drewry
+* Rohan Samanta
+* Nickolas Phen
+* Andrew Gil
 
 #### Technology
 * Django, SQLite, HTML, CSS
