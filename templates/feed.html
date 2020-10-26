@@ -29,10 +29,10 @@
     <script type="text/javascript">
       function initMap() {
         let coords = JSON.parse("{{coords|escapejs}}");
-        var waterton = { lat: 49.048746, lng: -113.909336 };
+        var centerofmap = { lat: 17.607788, lng: 8.081666 };
         var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 6,
-          center: waterton,
+          zoom: 2,
+          center: centerofmap,
         });
         coords.forEach(
           (hike) =>
