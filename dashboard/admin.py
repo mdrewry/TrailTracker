@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dashboard.models import Hike
 # Register your models here.
-from .models import Hike
+from .models import Hike, ToggleVar
 admin.site.register(Hike)
+admin.site.register(ToggleVar)
