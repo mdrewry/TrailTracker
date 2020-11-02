@@ -12,7 +12,7 @@
     </div>
     <div class="list">
       {% for hike in hikes %}
-      <a href="feed/{{hike.id}}/">
+      <a href="{{hike.id}}">
         <div class="hike-item">
           <div class="row-center">
             <h4 class="content-text">{{hike.name}}</h4>
@@ -23,7 +23,7 @@
           </div>
           <p class="content-text">{{hike.description}}</p>
           {% if edit_entries%}
-          <a href="feed/edit/{{hike.id}}"
+          <a href="edit/{{hike.id}}"
             ><button class="nav-button">Edit</button></a
           >
           {%endif%}

@@ -46,14 +46,51 @@ def addEntry(request):
     if(request.method == "POST"):
         form = HikeForm(request.POST, request.FILES)
         if(form.is_valid()):
-            Hike.objects.createHike(request.POST.get("name"),request.POST.get("latitude"),request.POST.get("longitude"),request.POST.get("startDate"),request.POST.get("endDate"),request.POST.get("miles"),request.POST.get("elevationGain"),request.POST.get("elevationLoss"),request.POST.get("description"),False,request.FILES['image'])
+            Hike.objects.createHike(request.POST.get("name"),
+            request.POST.get("latitude"),
+            request.POST.get("longitude"),
+            request.POST.get("startDate"),
+            request.POST.get("endDate"),
+            request.POST.get("miles"),
+            request.POST.get("elevationGain"),
+            request.POST.get("elevationLoss"),
+            request.POST.get("description"),
+            False,
+            request.FILES['image'])
             return HttpResponseRedirect('/')
     else:
         form = HikeForm()
     return render(request, 'addEntry.html', {"form" : form})
 
 def editEntry(request, id):
-    return render(request,'editEntry.html',{'hike':Hike.objects.get(pk=id)})
+    selected_hike = Hike.objects.get(pk=id)
+    if(request.method == "POST"):
+        form = HikeForm(request.POST, request.FILES)
+        if(form.is_valid()):
+            Hike.objects.filter(pk=id).update(
+                name= request.POST.get("name"),
+                description= request.POST.get("description"),
+                latitude= request.POST.get("latitude"),
+                longitude= request.POST.get("longitude"),
+                startDate= request.POST.get("startDate"),
+                endDate= request.POST.get("endDate"),
+                elevationGain= request.POST.get("elevationGain"),
+                elevationLoss= request.POST.get("elevationLoss"),
+            )
+            return HttpResponseRedirect('/')
+    else:
+        form = HikeForm(
+            initial={
+                'name':selected_hike.name,
+                'description':selected_hike.description,
+                'miles': selected_hike.miles,
+                'latitude': selected_hike.latitude, 
+                'longitude':selected_hike.longitude, 
+                'startDate': selected_hike.startDate,
+                'endDate':selected_hike.endDate,
+                'elevationGain':selected_hike.elevationGain,
+                'elevationLoss':selected_hike.elevationLoss})
+    return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})

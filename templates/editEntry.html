@@ -1,27 +1,9 @@
-{% extends "dashboard.html" %} {% block content %} 
-<div class="hike-entries">
-    <h4 class="content-text">EDIT ENTRY</h4>
-    <h1 class="content-text">{{hike.name}}</h4>
-    <h4 class="content-text">Trip : {{hike.startDate}} - {{hike.endDate}}</h4>
-    <h4 class="content-text">Miles traveled: {{hike.miles}}</h4>
-    <div class="row-center">
-        <div class="hike-cols">
-            <h4 class="content-text">Elevation gained: </h4>
-            <h4 class="elevation-gain">+{{hike.elevationGain}}</h4>
-        </div>
-        <div class="hike-cols">
-            <h4 class="content-text">Elevation lost: </h4>
-            <h4 class="elevation-loss">-{{hike.elevationLoss}}</h4>
-        </div>
-    </div>
-    <div class="spacer50"></div>
-    <div class="hike-cols">
-        <h3 class="description-headers">Description:</h4>
-    </div>
-    <h4 class="content-text">{{hike.description}}</h4>
-</div>
-<div class="spacer50"></div>
-{% if hike.image.url != null %}
-<img src={{hike.image.url}} alt="" style="width:480px;height:320px">
-{% endif %}
- {% endblock %}
+{% extends "dashboard.html" %} {% block content %} {% load crispy_forms_tags %}
+<h1 class="content-text">Edit {{hike.name}}</h1>
+<h1 class="content-text">
+  <form action="{{hike.id}}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form|crispy}}
+    <input type="submit" value="Submit" />
+  </form>
+</h1>
+{% endblock %}
