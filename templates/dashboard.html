@@ -20,6 +20,10 @@
   <body>
     <div class="navbar">
       <h4 class="navbar-header">TrailTracker</h4>
+      <div class="fill"></div>
+      {% if request.path != "/" %}
+      <a href="/"><button class="nav-button">Back</button></a>
+      {% endif %}
     </div>
     <div class="content">{% block content %}{% endblock %}</div>
   </body>

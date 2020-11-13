@@ -4,10 +4,11 @@
     <div class="row-center">
       <h3 class="map-title">Hike Entries</h3>
       <div class="fill"></div>
-      <form method="POST" action="">
-        {% csrf_token %}
-        <button class="nav-button" type="submit">Edit Entries</button>
-      </form>
+      {% if hikes %}
+      <a href="toggleEdit">
+        <button class="nav-button">Edit Entries</button>
+      </a>
+      {%endif%}
       <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
     <div class="list">
@@ -22,14 +23,16 @@
             {%endif%}
           </div>
           <p class="content-text">{{hike.description}}</p>
-          {% if edit_entries%}
-          <a href="edit/{{hike.id}}"
-            ><button class="nav-button">Edit</button></a
-          >
-          <a href="delete/{{hike.id}}">
-            <button class="delete-button">Delete</button>
-          </a>
-          {%endif%}
+          <div class="hike-item-button-wrapper">
+            {% if edit_entries%}
+            <a href="edit/{{hike.id}}"
+              ><button class="nav-button">Edit</button></a
+            >
+            <a href="delete/{{hike.id}}">
+              <button class="delete-button">Delete</button>
+            </a>
+            {%endif%}
+          </div>
         </div>
       </a>
       {% endfor %}

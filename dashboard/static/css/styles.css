@@ -175,6 +175,10 @@ a:hover {
   align-items: center;
   flex-grow: 1;
 }
+.hike-item-button-wrapper {
+  min-height: 30px;
+  text-align: right;
+}
 .description-headers {
   color: var(--contrast);
   text-decoration: underline;
