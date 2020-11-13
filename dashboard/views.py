@@ -94,3 +94,8 @@ def editEntry(request, id):
 
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
+
+def deleteEntry(request,id):
+    hike=Hike.objects.get(pk=id)
+    hike.delete()
+    return render(request,'dashboard.html')

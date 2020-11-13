@@ -188,3 +188,9 @@ a:hover {
 .hike-txt-contents {
   color: var(--contrast);
 }
+.delete-button {
+  background-color: var(--dark);
+  border: solid var(--highlight) 1px;
+  color: var(--contrast);
+  border-radius: 5px;
+}
