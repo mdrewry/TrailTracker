@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.feed, name='feed'),
     path('addEntry', views.addEntry, name='addEntry'),
-    path('feed/<int:id>/',views.viewEntry,name='viewEntry'),
+    path('<int:id>',views.viewEntry,name='viewEntry'),
+    path('edit/<int:id>',views.editEntry,name='editEntry'),
 ]
