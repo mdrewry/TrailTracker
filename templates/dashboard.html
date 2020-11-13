@@ -1,16 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <style>
-      /* Set the size of the div element that contains the map */
-     #map {
-       height: 500px;
-       width: 40%; 
-       margin-left: auto;
-       margin-right: auto;
-      }
-   </style>
     {% block title %}
     <title>TrailTracker</title>
     {% endblock %}
@@ -24,32 +15,12 @@
     />
     <!-- Add additional CSS in static file -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="favicon" href="{% static 'favicon.ico' %}" />
   </head>
   <body>
     <div class="navbar">
       <h4 class="navbar-header">TrailTracker</h4>
-      <div class="fill"></div>
-      <a href="feed"><button class="nav-button">View Hikes</button></a>
-      <div class="spacer"></div>
-      <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
-
-    <h3 style="text-align: center; color:pink">Location of Hike</h3>
-    <div id="map"></div>
-    <script>
-    
-    function initMap() {
-      var uluru = {lat: -25.344, lng: 131.036};
-      var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 10, center: uluru});
-      var marker = new google.maps.Marker({position: uluru, map: map});
-    }
-    </script>
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap">
-    </script>
-
     <div class="content">{% block content %}{% endblock %}</div>
-    
   </body>
 </html>

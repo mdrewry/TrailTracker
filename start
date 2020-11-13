@@ -1,0 +1,7 @@
+find . -path "/migrations/.py" -not -name "init.py" -delete
+find . -path "/migrations/.pyc"  -delete
+rm db.sqlite3
+python manage.py makemigrations
+python manage.py sqlmigrate dashboard 0001
+python manage.py migrate
+python manage.py runserver
