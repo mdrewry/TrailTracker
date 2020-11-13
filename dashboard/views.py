@@ -12,14 +12,6 @@ def feed(request):
     except:
         ToggleVar.objects.createToggleVar(False);
     context = {}
-    
-     #Manages edit entries toggle
-    curr_toggle_state = ToggleVar.objects.get(pk=1).toggle
-    if(request.method == "POST"):
-        ToggleVar.objects.filter(pk=1).update(toggle= not curr_toggle_state)
-        return HttpResponseRedirect('/')
-    context['edit_entries'] = curr_toggle_state
-
     #Calculates hike stats and populates hike list
     hikes = Hike.objects.all();
     total_miles = 0;
@@ -40,6 +32,7 @@ def feed(request):
     context['total_elevation_gain'] = int(total_elevation_gain);
     context['total_elevation_loss'] = int(total_elevation_loss);
     context['coords'] = json.dumps(coords);
+    context['edit_entries'] = ToggleVar.objects.get(pk=1).toggle
     return render(request, 'feed.html' , context);
 
 def addEntry(request):
@@ -95,7 +88,13 @@ def editEntry(request, id):
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
 
+def toggleEdit(request):
+    curr_toggle_state = ToggleVar.objects.get(pk=1).toggle
+    ToggleVar.objects.filter(pk=1).update(toggle= not curr_toggle_state)
+    print(curr_toggle_state)
+    return HttpResponseRedirect('/')
+
 def deleteEntry(request,id):
     hike=Hike.objects.get(pk=id)
     hike.delete()
-    return render(request,'dashboard.html')
+    return HttpResponseRedirect('/')
