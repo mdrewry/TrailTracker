@@ -69,6 +69,7 @@ def editEntry(request, id):
                 endDate= request.POST.get("endDate"),
                 elevationGain= request.POST.get("elevationGain"),
                 elevationLoss= request.POST.get("elevationLoss"),
+                image= request.FILES['image'],
             )
             return HttpResponseRedirect('/')
     else:
@@ -82,7 +83,8 @@ def editEntry(request, id):
                 'startDate': selected_hike.startDate,
                 'endDate':selected_hike.endDate,
                 'elevationGain':selected_hike.elevationGain,
-                'elevationLoss':selected_hike.elevationLoss})
+                'elevationLoss':selected_hike.elevationLoss,
+                'image':selected_hike.image})
     return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 
 def viewEntry(request,id):
