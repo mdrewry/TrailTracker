@@ -17,13 +17,20 @@ def feed(request):
     total_miles = 0;
     total_elevation_gain=0;
     total_elevation_loss=0;
+    name_filter = "";
     coords = [];
+    filtered_hikes = [];
     for hike in hikes:
         total_miles += hike.miles;
         total_elevation_gain+=hike.elevationGain;
         total_elevation_loss+=hike.elevationLoss;
-        coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
-    context['hikes'] = hikes
+        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)):
+            coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
+            filtered_hikes.append(hike)
+
+    
+        
+    context['hikes'] = filtered_hikes
     context['num_hikes'] = len(hikes)
     context['average_miles'] = int(total_miles/context['num_hikes']) if context['num_hikes']>0 else 0;
     context['average_elevation_gain'] = int(total_elevation_gain/context['num_hikes']) if context['num_hikes']>0 else 0;
