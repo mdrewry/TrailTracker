@@ -1,9 +1,15 @@
-{% extends "dashboard.html" %} {% block content %} {% load crispy_forms_tags %}
-<h1 class="content-text">Edit {{hike.name}}</h1>
+{% extends "dashboard.html" %} {% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+
+<h1 id="form-title" class="content-text">Edit {{hike.name}} Hike Entry</h1>
+
 <h1 class="content-text">
-  <form action="{{hike.id}}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {{form|crispy}}
-    <input type="submit" value="Submit" />
-  </form>
+    <form action="{{hike.id}}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{form|crispy}}
+        <input type="submit" value="Submit"/>
+    </form>
 </h1>
 {% endblock %}

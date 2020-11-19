@@ -1,6 +1,9 @@
 {% extends "dashboard.html" %} {% block content %}
 {% load crispy_forms_tags %}
-<h1 class="content-text">Create Hike Entry</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+
+<h1 id="form-title" class="content-text">Create a Hike Entry</h1>
 
 <h1 class="content-text">
     <form action="addEntry" method="POST" enctype="multipart/form-data">
