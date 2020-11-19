@@ -4,37 +4,29 @@
     <div class="row-center">
       <h3 class="map-title">Hike Entries</h3>
       <div class="fill"></div>
-      {% if hikes %}
-      <a href="toggleEdit">
-        <button class="nav-button">Edit Entries</button>
-      </a>
-      {%endif%}
       <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
     <div class="list">
       {% for hike in hikes %}
-      <a href="{{hike.id}}">
-        <div class="hike-item">
-          <div class="row-center">
-            <h4 class="content-text">{{hike.name}}</h4>
-            <div class="fill"></div>
-            {% if hike.starred%}
-            <h4 class="content-text">Star</h4>
-            {%endif%}
-          </div>
-          <p class="content-text">{{hike.description}}</p>
-          <div class="hike-item-button-wrapper">
-            {% if edit_entries%}
-            <a href="edit/{{hike.id}}"
-              ><button class="nav-button">Edit</button></a
-            >
-            <a href="delete/{{hike.id}}">
-              <button class="delete-button">Delete</button>
-            </a>
-            {%endif%}
-          </div>
+      <div class="hike-item">
+        <div class="row-center">
+          <h4 class="content-text">{{hike.name}}</h4>
+          <div class="fill"></div>
+          {% if hike.starred%}
+          <h4 class="content-text">Star</h4>
+          {%endif%}
         </div>
-      </a>
+        <p class="content-text">{{hike.description}}</p>
+        <div class="hike-item-button-wrapper">
+          <a href="{{hike.id}}"><button class="nav-button">View</button></a>
+          <a href="edit/{{hike.id}}"
+            ><button class="nav-button">Edit</button></a
+          >
+          <a href="delete/{{hike.id}}">
+            <button class="nav-button">Delete</button>
+          </a>
+        </div>
+      </div>
       {% endfor %}
     </div>
   </div>
