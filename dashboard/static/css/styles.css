@@ -30,7 +30,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 50px;
+  height: 75px;
   width: 100%;
   background-color: var(--light);
   position: fixed;
@@ -42,9 +42,15 @@ a:hover {
 }
 .nav-button {
   background-color: var(--dark);
-  border: solid var(--highlight) 1px;
+  border: solid var(--highlight) 3px;
   color: var(--contrast);
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: large;
+  width: 100px;
+  height: 40px;
+}
+.nav-button:hover {
+  background-color: var(--light);
 }
 .hike-item {
   color: var(--light);
@@ -53,9 +59,6 @@ a:hover {
   padding: 10px;
   margin-top: 10px;
   width: 20vw;
-}
-.hike-item:hover {
-  background-color: var(--light);
 }
 .content-text {
   color: var(--contrast);
@@ -66,7 +69,7 @@ a:hover {
   height: 100%;
   align-items: center;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 75px;
 }
 .map-title {
   color: var(--highlight);

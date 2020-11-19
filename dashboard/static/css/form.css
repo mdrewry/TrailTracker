@@ -1,61 +1,57 @@
-#form-title{
-    color: #4ecca3;
+#form-title {
+  color: #4ecca3;
 }
-.control-group{
-    color: #4ecca3;
+.control-group {
+  color: #4ecca3;
 }
-#id_name{
-    height: 100px;
+#id_name {
+  height: 100px;
 }
-#id_description{
-    height: 100px;
+#id_description {
+  height: 100px;
 }
-#id_latitude{
-    width: 230px;
+#id_latitude {
+  width: 230px;
 }
-#id_longitude{
-    width: 230px;
+#id_longitude {
+  width: 230px;
 }
-#id_startDate{
-    width: 290px;
+#id_startDate {
+  width: 290px;
 }
-#id_endDate{
-    width: 290px;
+#id_endDate {
+  width: 290px;
 }
-#id_miles{
-    width: 230px;
+#id_miles {
+  width: 230px;
 }
-#id_elevationGain{
-    width: 230px;
+#id_elevationGain {
+  width: 230px;
 }
-#id_elevationLoss{
-    width: 230px;
+#id_elevationLoss {
+  width: 230px;
 }
-.asteriskField{
-    color: #232931;
+.asteriskField {
+  color: #232931;
 }
-.clearablefileinput{
-    color: white;
+.clearablefileinput {
+  color: white;
 }
-label{
-    margin-top: 1.5rem;
+label {
+  margin-top: 1.5rem;
 }
-input[type="submit"]{
-    position: absolute;
-    background-color: white;
-    left: 46%;
-    color: black;
-    font-size: inherit;
-    padding: 5px 20px;
-    cursor: pointer;
-    border-radius: 20px;
-    text-align: center;
-    border: 8px solid #8BC34A;
-    margin-top: 2.5rem;
-    padding-bottom: 2px;
-    margin-bottom: 50px;
+input[type="submit"] {
+  position: absolute;
+  left: calc(50% - 100px);
+  margin-top: 20px;
+  background-color: var(--dark);
+  border: solid var(--highlight) 3px;
+  color: var(--contrast);
+  border-radius: 20px;
+  font-size: x-large;
+  width: 200px;
+  height: 80px;
 }
 input[type="submit"]:hover {
-    background-color: #8BC34A;
-    color: white;
-  }
+  background-color: var(--light);
+}
