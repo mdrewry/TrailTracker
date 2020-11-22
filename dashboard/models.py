@@ -9,11 +9,6 @@ class HikeManager(models.Manager):
     def createHike(self, name, latitude, longitude, startDate, endDate, miles, elevationGain, elevationLoss, description, starred, image):
         hike = self.create(name=name, latitude=latitude, longitude=longitude, startDate=startDate, endDate=endDate, miles=miles,elevationGain=elevationGain,elevationLoss=elevationLoss,description=description,starred=starred,image=image)
         return hike
-
-class ToggleVarManager(models.Manager):
-    def createToggleVar(self, toggle):
-        toggle_var = self.create(toggle=toggle)
-        return toggle_var
     
 # Create your models here.
 class Hike(models.Model):
@@ -44,9 +39,3 @@ class Hike(models.Model):
     def markStarred(self, status):
         self.starred=status
         self.save()
-
-class ToggleVar(models.Model):
-    toggle = models.BooleanField(default=False)
-    objects = ToggleVarManager()
-    def __str__(self):
-        return self.toggle

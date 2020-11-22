@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from dashboard.models import Hike, ToggleVar
+from dashboard.models import Hike
 from dashboard.forms import HikeForm
 import json
 # Create your views here.
@@ -7,23 +7,26 @@ def dashboard(request):
     return render(request, 'dashboard.html');
 
 def feed(request):
-    try:
-        ToggleVar.objects.get(pk=1)
-    except:
-        ToggleVar.objects.createToggleVar(False);
     context = {}
     #Calculates hike stats and populates hike list
     hikes = Hike.objects.all();
     total_miles = 0;
     total_elevation_gain=0;
     total_elevation_loss=0;
+    name_filter = "";
     coords = [];
+    filtered_hikes = [];
     for hike in hikes:
         total_miles += hike.miles;
         total_elevation_gain+=hike.elevationGain;
         total_elevation_loss+=hike.elevationLoss;
-        coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
-    context['hikes'] = hikes
+        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)):
+            coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
+            filtered_hikes.append(hike)
+
+    
+        
+    context['hikes'] = filtered_hikes
     context['num_hikes'] = len(hikes)
     context['average_miles'] = int(total_miles/context['num_hikes']) if context['num_hikes']>0 else 0;
     context['average_elevation_gain'] = int(total_elevation_gain/context['num_hikes']) if context['num_hikes']>0 else 0;
@@ -32,7 +35,6 @@ def feed(request):
     context['total_elevation_gain'] = int(total_elevation_gain);
     context['total_elevation_loss'] = int(total_elevation_loss);
     context['coords'] = json.dumps(coords);
-    context['edit_entries'] = ToggleVar.objects.get(pk=1).toggle
     return render(request, 'feed.html' , context);
 
 def addEntry(request):
@@ -89,12 +91,6 @@ def editEntry(request, id):
 
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
-
-def toggleEdit(request):
-    curr_toggle_state = ToggleVar.objects.get(pk=1).toggle
-    ToggleVar.objects.filter(pk=1).update(toggle= not curr_toggle_state)
-    print(curr_toggle_state)
-    return HttpResponseRedirect('/')
 
 def deleteEntry(request,id):
     hike=Hike.objects.get(pk=id)
