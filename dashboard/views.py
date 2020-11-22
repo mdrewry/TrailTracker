@@ -51,7 +51,8 @@ def addEntry(request):
             request.POST.get("elevationLoss"),
             request.POST.get("description"),
             False,
-            request.FILES['image'])
+            request.FILES['image'],
+            request.POST.get("tag"))
             return HttpResponseRedirect('/')
     else:
         form = HikeForm()
@@ -72,6 +73,7 @@ def editEntry(request, id):
                 elevationGain= request.POST.get("elevationGain"),
                 elevationLoss= request.POST.get("elevationLoss"),
                 image= request.FILES['image'],
+                tag=request.POST.get("tag")
             )
             return HttpResponseRedirect('/')
     else:
@@ -96,3 +98,13 @@ def deleteEntry(request,id):
     hike=Hike.objects.get(pk=id)
     hike.delete()
     return HttpResponseRedirect('/')
+
+def get_queryset(request):
+    result = ""
+    query = request.GET.get('search')
+    if query:
+        postresult = Hike.objects.filter(name__contains=query)
+        result = postresult
+    else:
+        result = None
+    return result

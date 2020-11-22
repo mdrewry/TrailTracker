@@ -6,8 +6,8 @@ from django.utils import timezone
 
 
 class HikeManager(models.Manager):
-    def createHike(self, name, latitude, longitude, startDate, endDate, miles, elevationGain, elevationLoss, description, starred, image):
-        hike = self.create(name=name, latitude=latitude, longitude=longitude, startDate=startDate, endDate=endDate, miles=miles,elevationGain=elevationGain,elevationLoss=elevationLoss,description=description,starred=starred,image=image)
+    def createHike(self, name, latitude, longitude, startDate, endDate, miles, elevationGain, elevationLoss, description, starred, image, tag):
+        hike = self.create(name=name, latitude=latitude, longitude=longitude, startDate=startDate, endDate=endDate, miles=miles,elevationGain=elevationGain,elevationLoss=elevationLoss,description=description,starred=starred,image=image,tag=tag)
         return hike
     
 # Create your models here.

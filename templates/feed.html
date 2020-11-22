@@ -7,6 +7,10 @@
       <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
     <div class="list">
+      <form class="add_your_class" method="GET" action="" >
+        <input class="add_your_class" type="search" name="search"> 
+        <button class="nav-button" type="submit"> Search </button>
+      </form>
       {% for hike in hikes %}
       <div class="hike-item">
         <div class="row-center">
@@ -17,6 +21,9 @@
           {%endif%}
         </div>
         <p class="content-text">{{hike.description}}</p>
+        {% if hike.tag %}
+        <p class="content-text">Tags: {{hike.tag}}</p>
+        {% endif %}
         <div class="hike-item-button-wrapper">
           <a href="{{hike.id}}"><button class="nav-button">View</button></a>
           <a href="edit/{{hike.id}}"
