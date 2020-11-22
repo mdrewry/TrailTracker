@@ -7,7 +7,7 @@ class DateInput(forms.DateInput):
 class HikeForm(ModelForm):
     class Meta:
         model = Hike
-        exclude = ['starred']
+        exclude = ['starred','tag']
         widgets = {
             'startDate': DateInput(),
             'endDate': DateInput(),

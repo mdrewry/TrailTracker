@@ -35,6 +35,8 @@ class Hike(models.Model):
 
     image = models.ImageField(default=None,upload_to="img/")
 
+    tag=models.TextField(default="")
+
     objects = HikeManager()
 
     def __str__(self):
