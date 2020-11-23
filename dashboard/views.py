@@ -13,7 +13,7 @@ def feed(request):
     total_miles = 0;
     total_elevation_gain=0;
     total_elevation_loss=0;
-    name_filter = "";
+    name_filter = request.GET.get('search','');
     coords = [];
     filtered_hikes = [];
     for hike in hikes:
@@ -35,6 +35,7 @@ def feed(request):
     context['total_elevation_gain'] = int(total_elevation_gain);
     context['total_elevation_loss'] = int(total_elevation_loss);
     context['coords'] = json.dumps(coords);
+    context['name_filter'] = name_filter;
     return render(request, 'feed.html' , context);
 
 def addEntry(request):

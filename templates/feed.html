@@ -1,9 +1,17 @@
 {% extends "dashboard.html" %} {% block content %}
 <div class="feed-wrapper">
   <div class="info-left">
-    <div class="row-center">
-      <h3 class="map-title">Hike Entries</h3>
-      <div class="fill"></div>
+    <div class="list-header">
+      <form class="row-center" method="GET" action=".">
+        <input
+          class="search-field"
+          name="search"
+          type="text"
+          placeholder="Search hikes..."
+          value="{{name_filter}}"
+        />
+        <button class="search-button" type="submit">Search</button>
+      </form>
       <a href="addEntry"><button class="nav-button">Add Entry</button></a>
     </div>
     <div class="list">
@@ -13,7 +21,11 @@
           <h4 class="content-text">{{hike.name}}</h4>
           <div class="fill"></div>
           {% if hike.starred%}
-            <input class="star" type="checkbox" title="bookmark page"><br/><br/>
+          <input
+            class="star"
+            type="checkbox"
+            title="bookmark page"
+          /><br /><br />
           {%endif%}
         </div>
         <p class="content-text">{{hike.description}}</p>
