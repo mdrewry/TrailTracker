@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from dashboard.models import Hike
+from dashboard.models import Hike, ImageSave
 from dashboard.forms import HikeForm
 import json
 # Create your views here.
@@ -73,6 +73,9 @@ def editEntry(request, id):
                 elevationLoss= request.POST.get("elevationLoss"),
                 image= request.FILES['image'],
             )
+
+            addImage = ImageSave(image=request.FILES['image'])
+            addImage.save()
             return HttpResponseRedirect('/')
     else:
         form = HikeForm(
