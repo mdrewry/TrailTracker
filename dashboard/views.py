@@ -40,6 +40,9 @@ def feed(request):
 def addEntry(request):
     if(request.method == "POST"):
         form = HikeForm(request.POST, request.FILES)
+        starredBool = False
+        if request.POST.get("starred") == 'on':
+            starredBool = True
         if(form.is_valid()):
             Hike.objects.createHike(request.POST.get("name"),
             request.POST.get("latitude"),
@@ -50,7 +53,7 @@ def addEntry(request):
             request.POST.get("elevationGain"),
             request.POST.get("elevationLoss"),
             request.POST.get("description"),
-            False,
+            starredBool,
             request.FILES['image'])
             return HttpResponseRedirect('/')
     else:
@@ -61,6 +64,9 @@ def editEntry(request, id):
     selected_hike = Hike.objects.get(pk=id)
     if(request.method == "POST"):
         form = HikeForm(request.POST, request.FILES)
+        starredBool = False
+        if request.POST.get("starred") == 'on':
+            starredBool = True
         if(form.is_valid()):
             Hike.objects.filter(pk=id).update(
                 name= request.POST.get("name"),
@@ -71,6 +77,7 @@ def editEntry(request, id):
                 endDate= request.POST.get("endDate"),
                 elevationGain= request.POST.get("elevationGain"),
                 elevationLoss= request.POST.get("elevationLoss"),
+                starred= starredBool,
                 image= request.FILES['image'],
             )
 
@@ -89,6 +96,7 @@ def editEntry(request, id):
                 'endDate':selected_hike.endDate,
                 'elevationGain':selected_hike.elevationGain,
                 'elevationLoss':selected_hike.elevationLoss,
+                'starred':selected_hike.starred,
                 'image':selected_hike.image})
     return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 

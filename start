@@ -1,4 +1,5 @@
 rm media/*
+rm media/img/*
 find . -path "/migrations/.py" -not -name "init.py" -delete
 find . -path "/migrations/.pyc"  -delete
 rm db.sqlite3
