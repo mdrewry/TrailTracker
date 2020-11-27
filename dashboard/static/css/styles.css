@@ -246,7 +246,6 @@ a:hover {
 }
 .star:before {
   content: "\2605";
-  position: absolute;
   visibility: visible;
   color: #4ecca3;
 }

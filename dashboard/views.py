@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from dashboard.models import Hike, ImageSave
+from dashboard.models import Hike, ImageSave, Favorite
 from dashboard.forms import HikeForm
 import json
 # Create your views here.
@@ -15,7 +15,12 @@ def feed(request):
     total_elevation_loss=0
     name_filter = request.GET.get('search','')
     favoriteButton = request.GET.get('Favorites')
-    # favoriteBool = False
+    count = Favorite.objects.all().count()
+    if count == 0:
+        favModel = Favorite.objects.create(fav = False) 
+    else:
+        favModel = Favorite.objects.get(id=1)
+    favoriteBool = favModel.fav
     coords = []
     filtered_hikes = []
     for hike in hikes:
@@ -26,14 +31,16 @@ def feed(request):
             coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name})
             filtered_hikes.append(hike)
     if favoriteButton == "Favorites":
-        # if not favoriteBool:
-        for hike in hikes:
-            if hike.starred == False:
-                filtered_hikes.remove(hike)
-        # if favoriteBool:
-        #     for hike in hikes:
-        #         filtered_hikes.add(hike)
-        # favoriteBool = not favoriteBool
+        if not favoriteBool:
+            for hike in hikes:
+                if hike.starred == False:
+                    filtered_hikes.remove(hike)
+        if favoriteBool:
+            filtered_hikes.clear()
+            for hike in hikes:
+                filtered_hikes.append(hike)
+        favModel.fav = not favoriteBool
+        favModel.save()
     
     context['favoriteButton'] = favoriteButton
     context['hikes'] = filtered_hikes

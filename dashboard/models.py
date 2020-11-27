@@ -40,3 +40,6 @@ class Hike(models.Model):
 
 class ImageSave(models.Model):
     image = models.ImageField(default=None,upload_to="")
+
+class Favorite(models.Model):
+    fav = models.BooleanField()
