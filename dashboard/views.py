@@ -99,12 +99,3 @@ def deleteEntry(request,id):
     hike.delete()
     return HttpResponseRedirect('/')
 
-def get_queryset(request):
-    result = ""
-    query = request.GET.get('search')
-    if query:
-        postresult = Hike.objects.filter(name__contains=query)
-        result = postresult
-    else:
-        result = None
-    return result
