@@ -1,42 +1,59 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from dashboard.models import Hike, ImageSave
+from dashboard.models import Hike, ImageSave, Favorite
 from dashboard.forms import HikeForm
 import json
 # Create your views here.
 def dashboard(request):
-    return render(request, 'dashboard.html');
+    return render(request, 'dashboard.html')
 
 def feed(request):
     context = {}
     #Calculates hike stats and populates hike list
-    hikes = Hike.objects.all();
-    total_miles = 0;
-    total_elevation_gain=0;
-    total_elevation_loss=0;
-    name_filter = request.GET.get('search','');
-    coords = [];
-    filtered_hikes = [];
+    hikes = Hike.objects.all()
+    total_miles = 0
+    total_elevation_gain=0
+    total_elevation_loss=0
+    name_filter = request.GET.get('search','')
+    favoriteButton = request.GET.get('Favorites')
+    count = Favorite.objects.all().count()
+    if count == 0:
+        favModel = Favorite.objects.create(fav = False) 
+    else:
+        favModel = Favorite.objects.get(id=1)
+    favoriteBool = favModel.fav
+    coords = []
+    filtered_hikes = []
     for hike in hikes:
-        total_miles += hike.miles;
-        total_elevation_gain+=hike.elevationGain;
-        total_elevation_loss+=hike.elevationLoss;
+        total_miles += hike.miles
+        total_elevation_gain+=hike.elevationGain
+        total_elevation_loss+=hike.elevationLoss
         if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)):
-            coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
+            coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name})
             filtered_hikes.append(hike)
-
+    if favoriteButton == "Favorites":
+        if not favoriteBool:
+            for hike in hikes:
+                if hike.starred == False:
+                    filtered_hikes.remove(hike)
+        if favoriteBool:
+            filtered_hikes.clear()
+            for hike in hikes:
+                filtered_hikes.append(hike)
+        favModel.fav = not favoriteBool
+        favModel.save()
     
-        
+    context['favoriteButton'] = favoriteButton
     context['hikes'] = filtered_hikes
     context['num_hikes'] = len(hikes)
-    context['average_miles'] = int(total_miles/context['num_hikes']) if context['num_hikes']>0 else 0;
-    context['average_elevation_gain'] = int(total_elevation_gain/context['num_hikes']) if context['num_hikes']>0 else 0;
-    context['average_elevation_loss'] = int(total_elevation_loss/context['num_hikes']) if context['num_hikes']>0 else 0;
-    context['total_miles'] = int(total_miles);
-    context['total_elevation_gain'] = int(total_elevation_gain);
-    context['total_elevation_loss'] = int(total_elevation_loss);
-    context['coords'] = json.dumps(coords);
-    context['name_filter'] = name_filter;
-    return render(request, 'feed.html' , context);
+    context['average_miles'] = int(total_miles/context['num_hikes']) if context['num_hikes']>0 else 0
+    context['average_elevation_gain'] = int(total_elevation_gain/context['num_hikes']) if context['num_hikes']>0 else 0
+    context['average_elevation_loss'] = int(total_elevation_loss/context['num_hikes']) if context['num_hikes']>0 else 0
+    context['total_miles'] = int(total_miles)
+    context['total_elevation_gain'] = int(total_elevation_gain)
+    context['total_elevation_loss'] = int(total_elevation_loss)
+    context['coords'] = json.dumps(coords)
+    context['name_filter'] = name_filter
+    return render(request, 'feed.html' , context)
 
 def addEntry(request):
     if(request.method == "POST"):

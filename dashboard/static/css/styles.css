@@ -70,6 +70,7 @@ a:hover {
   border: solid var(--highlight) 3px;
   color: var(--contrast);
   flex-grow: 1;
+  margin-left: 10px;
 }
 .search-button {
   background-color: var(--dark);
@@ -245,7 +246,6 @@ a:hover {
 }
 .star:before {
   content: "\2605";
-  position: absolute;
   visibility: visible;
   color: #4ecca3;
 }
