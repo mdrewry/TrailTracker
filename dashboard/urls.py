@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:id>',views.viewEntry,name='viewEntry'),
     path('edit/<int:id>',views.editEntry,name='editEntry'),
     path('delete/<int:id>',views.deleteEntry,name='deleteEntry'),
+    path('gallery',views.gallery,name='gallery')
 ]
