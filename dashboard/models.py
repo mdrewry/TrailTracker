@@ -12,7 +12,6 @@ class HikeManager(models.Manager):
     
 # Create your models here.
 class Hike(models.Model):
-    listofTags=[]
     name = models.TextField(default="")
 
     latitude = models.FloatField(default=0)
@@ -31,12 +30,12 @@ class Hike(models.Model):
 
     image = models.ImageField(default=None,upload_to="")
 
-    tag=models.TextField(default="")
+    tag=models.TextField(default="", blank=True)
 
     objects = HikeManager()
 
     def __str__(self):
-        return "miles="+str(self.miles)+", elevationGain="+str(self.elevationGain)+", elevationLoss="+str(self.elevationLoss)+", description="+str(self.description)+", starred="+str(self.starred)
+        return "miles="+str(self.miles)+", elevationGain="+str(self.elevationGain)+", elevationLoss="+str(self.elevationLoss)+", description="+str(self.description)+", starred="+str(self.starred)+", tag="+str(self.tag)
     def markStarred(self, status):
         self.starred=status
         self.save()

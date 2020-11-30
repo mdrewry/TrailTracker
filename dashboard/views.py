@@ -24,18 +24,13 @@ def feed(request):
     coords = []
     filtered_hikes = []
     for hike in hikes:
-        hike.listofTags=hike.tag.split(",")
+        hike.list_of_tags = hike.tag.split(", ")
         total_miles += abs(hike.miles)
         total_elevation_gain+= abs(hike.elevationGain)
         total_elevation_loss+= abs(hike.elevationLoss)
-        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)) or name_filter in hike.listofTags:
+        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)) or name_filter in hike.list_of_tags:
             coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name})
             filtered_hikes.append(hike)
-        if(len(hike.listofTags)>1):
-            tagDisplay=hike.listofTags[0]
-            for x in range(1,len(hike.listofTags)):
-                tagDisplay=tagDisplay+", "+hike.listofTags[x]
-            hike.tag=tagDisplay
         
         
     if favoriteButton == "Favorites":
@@ -49,7 +44,6 @@ def feed(request):
                 filtered_hikes.append(hike)
         favModel.fav = not favoriteBool
         favModel.save()
-    
     context['favoriteButton'] = favoriteButton
     context['hikes'] = filtered_hikes
     context['num_hikes'] = len(hikes)
@@ -79,9 +73,9 @@ def addEntry(request):
             request.POST.get("elevationGain"),
             request.POST.get("elevationLoss"),
             request.POST.get("description"),
-            request.POST.get("tag"),
             starredBool,
-            request.FILES['image'])
+            request.FILES['image'],
+            request.POST.get("tag"))
             return HttpResponseRedirect('/')
     else:
         form = HikeForm()
