@@ -13,6 +13,9 @@ class HikeForm(ModelForm):
             'endDate': DateInput(),
         }
         labels = {
+            'image1' : ('Enter 3 images:<br/> Image 1'),
+            'image2' : ('Image 2'),
+            'image3' : ('Image 3'),
             'starred' : ('Favorite Hike'),
             'startDate': ('Start Date'),
             'endDate': ('End Date'),
