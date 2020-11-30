@@ -7,12 +7,13 @@ class DateInput(forms.DateInput):
 class HikeForm(ModelForm):
     class Meta:
         model = Hike
-        exclude = ['starred']
+        exclude = []
         widgets = {
             'startDate': DateInput(),
             'endDate': DateInput(),
         }
         labels = {
+            'starred' : ('Favorite Hike'),
             'startDate': ('Start Date'),
             'endDate': ('End Date'),
             'elevationGain': ('Elevation Gained'),

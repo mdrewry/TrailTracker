@@ -28,7 +28,7 @@ class Hike(models.Model):
     description = models.TextField(default="")
     starred = models.BooleanField(default=False)
 
-    image = models.ImageField(default=None,upload_to="img/")
+    image = models.ImageField(default=None,upload_to="")
 
     tag=models.TextField(default="")
 
@@ -39,3 +39,6 @@ class Hike(models.Model):
     def markStarred(self, status):
         self.starred=status
         self.save()
+
+class ImageSave(models.Model):
+    image = models.ImageField(default=None,upload_to="")

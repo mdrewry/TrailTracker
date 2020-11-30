@@ -5,10 +5,10 @@
   color: #4ecca3;
 }
 #id_name {
-  height: 100px;
+  height: 110px;
 }
 #id_description {
-  height: 100px;
+  height: 110px;
 }
 #id_latitude {
   width: 230px;
@@ -30,6 +30,9 @@
 }
 #id_elevationLoss {
   width: 230px;
+}
+#id_tag {
+  height: 110px;
 }
 .asteriskField {
   color: #232931;
@@ -54,4 +57,22 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
   background-color: var(--light);
+}
+input[type="checkbox"] {
+  visibility:hidden;
+  font-size:50px;
+  cursor:pointer;
+  height: 50px;
+  margin-right: 30px;
+}
+input[type="checkbox"]:before {
+ content: "\2605";
+ position: absolute;
+ visibility:visible;
+ color: #eeeeee;
+}
+input[type="checkbox"]:checked:before {
+ content: "\2605";
+ position: absolute;
+ color: #4ecca3;
 }

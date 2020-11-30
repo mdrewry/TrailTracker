@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from dashboard.models import Hike
+from dashboard.models import Hike, ImageSave
 from dashboard.forms import HikeForm
 import json
 # Create your views here.
@@ -13,9 +13,10 @@ def feed(request):
     total_miles = 0;
     total_elevation_gain=0;
     total_elevation_loss=0;
-    name_filter = "";
+    name_filter = request.GET.get('search','');
     coords = [];
     filtered_hikes = [];
+    
     for hike in hikes:
         total_miles += hike.miles;
         total_elevation_gain+=hike.elevationGain;
@@ -23,7 +24,8 @@ def feed(request):
         if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)):
             coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name});
             filtered_hikes.append(hike)
-
+        hike.tag=hike.tag.split(",")
+        
     
         
     context['hikes'] = filtered_hikes
@@ -35,11 +37,15 @@ def feed(request):
     context['total_elevation_gain'] = int(total_elevation_gain);
     context['total_elevation_loss'] = int(total_elevation_loss);
     context['coords'] = json.dumps(coords);
+    context['name_filter'] = name_filter;
     return render(request, 'feed.html' , context);
 
 def addEntry(request):
     if(request.method == "POST"):
         form = HikeForm(request.POST, request.FILES)
+        starredBool = False
+        if request.POST.get("starred") == 'on':
+            starredBool = True
         if(form.is_valid()):
             Hike.objects.createHike(request.POST.get("name"),
             request.POST.get("latitude"),
@@ -50,9 +56,9 @@ def addEntry(request):
             request.POST.get("elevationGain"),
             request.POST.get("elevationLoss"),
             request.POST.get("description"),
-            False,
-            request.FILES['image'],
-            request.POST.get("tag"))
+            request.POST.get("tag"),
+            starredBool,
+            request.FILES['image'])
             return HttpResponseRedirect('/')
     else:
         form = HikeForm()
@@ -62,6 +68,9 @@ def editEntry(request, id):
     selected_hike = Hike.objects.get(pk=id)
     if(request.method == "POST"):
         form = HikeForm(request.POST, request.FILES)
+        starredBool = False
+        if request.POST.get("starred") == 'on':
+            starredBool = True
         if(form.is_valid()):
             Hike.objects.filter(pk=id).update(
                 name= request.POST.get("name"),
@@ -72,9 +81,13 @@ def editEntry(request, id):
                 endDate= request.POST.get("endDate"),
                 elevationGain= request.POST.get("elevationGain"),
                 elevationLoss= request.POST.get("elevationLoss"),
+                starred= starredBool,
                 image= request.FILES['image'],
                 tag=request.POST.get("tag")
             )
+
+            addImage = ImageSave(image=request.FILES['image'])
+            addImage.save()
             return HttpResponseRedirect('/')
     else:
         form = HikeForm(
@@ -88,6 +101,7 @@ def editEntry(request, id):
                 'endDate':selected_hike.endDate,
                 'elevationGain':selected_hike.elevationGain,
                 'elevationLoss':selected_hike.elevationLoss,
+                'starred':selected_hike.starred,
                 'image':selected_hike.image})
     return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 
