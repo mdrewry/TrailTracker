@@ -207,6 +207,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   width: 50%;
+  height: 100%;
   justify-content: space-around;
 }
 .stats-left {
