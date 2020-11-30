@@ -1,15 +1,14 @@
-{% extends "dashboard.html" %} {% block content %} 
-<div class="gallery">
-    {% for hike in hikes %}
-        {% if hike.image1.url != urlexists %}
-        <img src={{hike.image1.url}} alt="" style="width:480px;height:320px">
-        {% endif %}
-        {% if hike.image2.url != urlexists %}
-        <img src={{hike.image2.url}} alt="" style="width:480px;height:320px">
-        {% endif %}
-        {% if hike.image3.url != urlexists %}
-        <img src={{hike.image3.url}} alt="" style="width:480px;height:320px">
-        {% endif %}
-    {% endfor %}
+{% extends "dashboard.html" %} {% block content %}
+<div class="gallery-wrapper">
+  <h3 class="gallery-text">Photo Gallery</h3>
+  <div class="gallery">
+    {% for hike in hikes %} {% if hike.image1.url != urlexists %}
+    <img src="{{hike.image1.url}}" alt="" style="width: 480px; height: 320px" />
+    {% endif %} {% if hike.image2.url != urlexists %}
+    <img src="{{hike.image2.url}}" alt="" style="width: 480px; height: 320px" />
+    {% endif %} {% if hike.image3.url != urlexists %}
+    <img src="{{hike.image3.url}}" alt="" style="width: 480px; height: 320px" />
+    {% endif %} {% endfor %}
+  </div>
 </div>
 {% endblock %}
