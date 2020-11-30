@@ -7,7 +7,7 @@
 * Andrew Gil
 
 #### Technology
-* Django, SQLite, HTML, CSS
+* Python, Django, SQLite, HTML, CSS
 
 #### Description
 * Record experiences of a hike.

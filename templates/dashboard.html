@@ -21,6 +21,9 @@
     <div class="navbar">
       <h4 class="navbar-header">TrailTracker</h4>
       <div class="fill"></div>
+      {% if request.path == "/" %}
+      <a href="/gallery"><button class="nav-button">Gallery</button></a>
+      {% endif %}
       {% if request.path != "/" %}
       <a href="/"><button class="nav-button">Back</button></a>
       {% endif %}
