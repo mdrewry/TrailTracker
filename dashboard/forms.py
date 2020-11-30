@@ -18,4 +18,5 @@ class HikeForm(ModelForm):
             'endDate': ('End Date'),
             'elevationGain': ('Elevation Gained'),
             'elevationLoss': ('Elevation Lost'),
+            'tag': ('Tag (Enter tags seperated by commas)')
         }
