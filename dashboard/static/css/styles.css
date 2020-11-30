@@ -6,6 +6,8 @@
 }
 html {
   height: 100vh;
+  min-height: 800px;
+  min-width: 1800px;
 }
 body {
   background-color: var(--dark);
