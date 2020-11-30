@@ -25,9 +25,9 @@ def feed(request):
     filtered_hikes = []
     for hike in hikes:
         hike.listofTags=hike.tag.split(",")
-        total_miles += hike.miles
-        total_elevation_gain+=hike.elevationGain
-        total_elevation_loss+=hike.elevationLoss
+        total_miles += abs(hike.miles)
+        total_elevation_gain+= abs(hike.elevationGain)
+        total_elevation_loss+= abs(hike.elevationLoss)
         if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)) or name_filter in hike.listofTags:
             coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name})
             filtered_hikes.append(hike)
