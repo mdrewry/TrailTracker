@@ -24,12 +24,15 @@ def feed(request):
     coords = []
     filtered_hikes = []
     for hike in hikes:
+        hike.list_of_tags = hike.tag.split(", ")
         total_miles += abs(hike.miles)
         total_elevation_gain+= abs(hike.elevationGain)
         total_elevation_loss+= abs(hike.elevationLoss)
-        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)):
+        if hike.name.lower().startswith(name_filter.lower(), 0, len(name_filter)) or name_filter in hike.list_of_tags:
             coords.append({'lat': hike.latitude, 'lng': hike.longitude, 'name': hike.name})
             filtered_hikes.append(hike)
+        
+        
     if favoriteButton == "Favorites":
         if not favoriteBool:
             for hike in hikes:
@@ -41,7 +44,6 @@ def feed(request):
                 filtered_hikes.append(hike)
         favModel.fav = not favoriteBool
         favModel.save()
-    
     context['favoriteButton'] = favoriteButton
     context['hikes'] = filtered_hikes
     context['num_hikes'] = len(hikes)
@@ -75,6 +77,7 @@ def addEntry(request):
             request.FILES['image1'],
             request.FILES['image2'],
             request.FILES['image3'],
+            request.POST.get("tag")
             )
             return HttpResponseRedirect('/')
     else:
@@ -101,7 +104,8 @@ def editEntry(request, id):
                 starred= starredBool,
                 image1= request.FILES['image1'],
                 image2= request.FILES['image2'],
-                image3= request.FILES['image3']
+                image3= request.FILES['image3'],
+                tag=request.POST.get("tag")
             )
 
             addImage = ImageSave(image=request.FILES['image1'])
@@ -126,7 +130,8 @@ def editEntry(request, id):
                 'starred':selected_hike.starred,
                 'image1':selected_hike.image1,
                 'image2':selected_hike.image2,
-                'image3':selected_hike.image3})
+                'image3':selected_hike.image3,
+                'tag':selected_hike.tag})
     return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 
 def viewEntry(request,id):
@@ -140,3 +145,4 @@ def deleteEntry(request,id):
     hike=Hike.objects.get(pk=id)
     hike.delete()
     return HttpResponseRedirect('/')
+

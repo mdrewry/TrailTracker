@@ -31,6 +31,9 @@
 #id_elevationLoss {
   width: 230px;
 }
+#id_tag {
+  height: 110px;
+}
 .asteriskField {
   color: #232931;
 }

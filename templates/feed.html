@@ -33,6 +33,9 @@
           {%endif%}
         </div>
         <p class="content-text">{{hike.description}}</p>
+        {% if hike.list_of_tags.0 %}
+        <p class="content-text">Tags: {{hike.tag}}</p>
+        {% endif %}
         <div class="hike-item-button-wrapper">
           <a href="{{hike.id}}"><button class="nav-button">View</button></a>
           <a href="edit/{{hike.id}}"
