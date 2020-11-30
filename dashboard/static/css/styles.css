@@ -207,6 +207,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   width: 50%;
+  justify-content: space-around;
 }
 .stats-left {
   margin-top: -80px;
@@ -218,8 +219,7 @@ a:hover {
   justify-content: center;
 }
 .total-hikes-text {
-  font-size: 250px;
-  line-height: 250px;
+  font-size: 8em;
   color: var(--contrast);
 }
 .stats-right {
@@ -231,15 +231,15 @@ a:hover {
 }
 .stats-text {
   color: var(--contrast);
-  font-size: 50px;
+  font-size: 1.8em;
 }
 .stats-text-gain {
   color: #228b22;
-  font-size: 50px;
+  font-size: 1.8em;
 }
 .stats-text-loss {
   color: #b22222;
-  font-size: 50px;
+  font-size: 1.8em;
 }
 .stats-text-wrapper {
   display: flex;
