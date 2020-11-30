@@ -323,3 +323,13 @@ a:hover {
   visibility: visible;
   color: #4ecca3;
 }
+.gallery {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--light);
+  border: solid var(--highlight) 1px;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+
+  grid-gap: 10px;
+}

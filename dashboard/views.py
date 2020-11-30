@@ -74,8 +74,11 @@ def addEntry(request):
             request.POST.get("elevationLoss"),
             request.POST.get("description"),
             starredBool,
-            request.FILES['image'],
-            request.POST.get("tag"))
+            request.FILES['image1'],
+            request.FILES['image2'],
+            request.FILES['image3'],
+            request.POST.get("tag")
+            )
             return HttpResponseRedirect('/')
     else:
         form = HikeForm()
@@ -99,11 +102,17 @@ def editEntry(request, id):
                 elevationGain= request.POST.get("elevationGain"),
                 elevationLoss= request.POST.get("elevationLoss"),
                 starred= starredBool,
-                image= request.FILES['image'],
+                image1= request.FILES['image1'],
+                image2= request.FILES['image2'],
+                image3= request.FILES['image3'],
                 tag=request.POST.get("tag")
             )
 
-            addImage = ImageSave(image=request.FILES['image'])
+            addImage = ImageSave(image=request.FILES['image1'])
+            addImage.save()
+            addImage = ImageSave(image=request.FILES['image2'])
+            addImage.save()
+            addImage = ImageSave(image=request.FILES['image3'])
             addImage.save()
             return HttpResponseRedirect('/')
     else:
@@ -119,12 +128,18 @@ def editEntry(request, id):
                 'elevationGain':selected_hike.elevationGain,
                 'elevationLoss':selected_hike.elevationLoss,
                 'starred':selected_hike.starred,
-                'image':selected_hike.image,
+                'image1':selected_hike.image1,
+                'image2':selected_hike.image2,
+                'image3':selected_hike.image3,
                 'tag':selected_hike.tag})
     return render(request,'editEntry.html',{'hike':selected_hike, "form" : form})
 
 def viewEntry(request,id):
     return render(request,'viewEntry.html',{'hike':Hike.objects.get(pk=id)})
+
+def gallery(request):
+    hikes = Hike.objects.all()
+    return render(request,'gallery.html',{'hikes':hikes})
 
 def deleteEntry(request,id):
     hike=Hike.objects.get(pk=id)
