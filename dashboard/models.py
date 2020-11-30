@@ -12,6 +12,7 @@ class HikeManager(models.Manager):
     
 # Create your models here.
 class Hike(models.Model):
+    listofTags=[]
     name = models.TextField(default="")
 
     latitude = models.FloatField(default=0)
