@@ -3,14 +3,19 @@
   <div class="info-left">
     <div class="list-header">
       <form method="GET" action=".">
-        <input class="nav-button" name="Favorites" type="submit" value="Favorites"/>
+        <input
+          class="nav-button"
+          name="Favorites"
+          type="submit"
+          value="Favorites"
+        />
       </form>
       <form class="row-center" method="GET" action=".">
         <input
           class="search-field"
           name="search"
           type="text"
-          placeholder="Search hikes..."
+          placeholder="Search hikes or tags..."
           value="{{name_filter}}"
         />
         <button class="search-button" type="submit">Search</button>
@@ -24,11 +29,7 @@
           <h4 class="content-text">{{hike.name}}</h4>
           <div class="fill"></div>
           {% if hike.starred%}
-          <input
-            class="star"
-            type="checkbox"
-            title="bookmark page"
-          /><br /><br />
+          <input class="star" type="checkbox" title="bookmark page" />
           {%endif%}
         </div>
         <p class="content-text">{{hike.description}}</p>
@@ -46,8 +47,10 @@
     </div>
   </div>
   <div class="info-right">
-    <h3 class="map-title">Hike Map</h3>
-    <div id="map"></div>
+    <div class="map">
+      <h3 class="map-title">Hike Map</h3>
+      <div id="map"></div>
+    </div>
     <script type="text/javascript">
       function initMap() {
         let coords = JSON.parse("{{coords|escapejs}}");
@@ -69,36 +72,45 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC323TW3StvvPi9Nqpm_XqaIFOBJDp4O1I&callback=initMap"
     ></script>
-    <h3 class="stats-title">Overall Statistics</h3>
+
     <div class="stats">
-      <div class="row-center">
-        <div class="stats-col">
-          <h3 class="content-text">Hikes Completed</h3>
-          <h3 class="content-text">{{num_hikes}}</h3>
+      <h3 class="stats-title">Overall Statistics</h3>
+      <div class="stats-inner">
+        <div class="stats-left">
+          <div>
+            <h4 class="total-hikes-text">{{num_hikes}}</h4>
+            <h3 class="stats-text">Hikes Recorded</h3>
+          </div>
         </div>
-      </div>
-      <div class="spacer50"></div>
-      <div class="row-center">
-        <div class="stats-col">
-          <h3 class="content-text">Total Miles Hiked</h3>
-          <h3 class="content-text">{{total_miles}}</h3>
-          <div class="spacer50"></div>
-          <h3 class="content-text">Average Miles Hiked</h3>
-          <h3 class="content-text">{{average_miles}}</h3>
-        </div>
-        <div class="stats-col">
-          <h3 class="content-text">Total Feet Climbed</h3>
-          <h3 class="content-text">{{total_elevation_gain}}</h3>
-          <div class="spacer50"></div>
-          <h3 class="content-text">Average Feet Climbed</h3>
-          <h3 class="content-text">{{average_elevation_gain}}</h3>
-        </div>
-        <div class="stats-col">
-          <h3 class="content-text">Total Feet Dropped</h3>
-          <h3 class="content-text">{{total_elevation_loss}}</h3>
-          <div class="spacer50"></div>
-          <h3 class="content-text">Average Feet Dropped</h3>
-          <h3 class="content-text">{{average_elevation_loss}}</h3>
+        <div class="stats-right">
+          <div class="row-center-max-height">
+            <div class="stats-col">
+              <div class="col-center">
+                <h3 class="stats-text">Total Distance(Miles)</h3>
+                <h3 class="stats-text">{{total_miles}}</h3>
+              </div>
+              <div class="col-center">
+                <h3 class="stats-text">Total Elevation(Feet)</h3>
+                <div class="stats-text-wrapper">
+                  <h3 class="stats-text-gain">+{{total_elevation_gain}}</h3>
+                  <h3 class="stats-text-loss">-{{total_elevation_loss}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="stats-col">
+              <div class="col-center">
+                <h3 class="stats-text">Average Distance(Miles)</h3>
+                <h3 class="stats-text">{{average_miles}}</h3>
+              </div>
+              <div class="col-center">
+                <h3 class="stats-text">Average Elevation(Feet)</h3>
+                <div class="stats-text-wrapper">
+                  <h3 class="stats-text-gain">+{{average_elevation_gain}}</h3>
+                  <h3 class="stats-text-loss">-{{average_elevation_loss}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
